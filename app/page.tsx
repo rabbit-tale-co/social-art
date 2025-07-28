@@ -1,18 +1,25 @@
 'use client';
 
 import { UserProfile } from "@/components/user-profile";
-import { ArtworkGrid } from "@/components/artwork-grid";
-import { userProfile, artworks, userId } from "@/lib/user/data";
+import { BentoGallery } from "@/components/BentoGallery";
+import { userProfile, artworks } from "@/lib/user/data";
+import { BentoImage } from "@/hooks/useDeterministicBento";
+
+// Konwertuj format danych ze starego na nowy
+const bentoImages: BentoImage[] = artworks.map(artwork => ({
+  id: artwork.id.toString(),
+  src: artwork.src,
+  title: artwork.title,
+  description: artwork.description,
+}));
 
 export default function Home() {
-
   return (
     <div className="min-h-screen">
       <UserProfile {...userProfile} />
-      <ArtworkGrid
-        artworks={artworks}
-        userId={userId}
-        showDebugInfo={true} // Wlaczam debug zeby zobaczyc aspect ratios
+      <BentoGallery
+        images={bentoImages}
+        showDebugInfo={true} // Wlaczam debug zeby zobaczyc nowy deterministyczny system
       />
     </div>
   );

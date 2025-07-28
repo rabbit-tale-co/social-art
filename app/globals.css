@@ -120,3 +120,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Deterministyczny Bento Grid - zgodny z wymaganiami */
+.grid-container {
+  @apply grid gap-2;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Usuwamy grid-auto-flow: row dense bo mamy własny algorytm pozycjonowania */
+}
+
+@media (max-width: 640px) {
+  .grid-container {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
