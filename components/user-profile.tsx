@@ -15,7 +15,7 @@ export function UserProfile({ username, coverImage, avatarImage, bio, stats }: U
   return (
     <div className="max-w-4xl mx-auto">
       {/* Cover Image */}
-      <div className="relative h-80 w-full">
+      <div className="relative h-64 w-full">
         <Image
           src={coverImage}
           alt="Cover artwork"
@@ -26,7 +26,7 @@ export function UserProfile({ username, coverImage, avatarImage, bio, stats }: U
 
       {/* Profile Picture */}
       <div className="flex justify-center -mt-16 relative z-10">
-        <div className="w-32 h-32 rounded-full border-4 border-white overflow-hidden bg-white">
+        <div className="size-32 rounded-full border-4 border-white overflow-hidden bg-white">
           <Image
             src={avatarImage}
             alt={`${username} profile`}
@@ -41,17 +41,17 @@ export function UserProfile({ username, coverImage, avatarImage, bio, stats }: U
       <div className="text-center mt-3 px-4">
         <h1 className="text-2xl font-bold text-gray-900">{username}</h1>
 
-        <p className="mt-3 text-gray-600 max-w-md mx-auto">
+        <p className="mt-2 text-gray-600 max-w-md mx-auto">
           {bio}
         </p>
 
-        <div className="flex justify-center items-center space-x-4 mt-3 text-sm text-gray-500">
+        <div className="flex justify-center items-center space-x-2 mt-3 text-sm text-gray-500">
           <span>
-            <span className="font-semibold text-gray-900">{stats.followers.toLocaleString()}</span> Followers
+            <span className="font-semibold text-gray-900">{stats.followers.toLocaleString()}</span> Following
           </span>
           <span>•</span>
           <span>
-            <span className="font-semibold text-gray-900">{stats.following.toLocaleString()}</span> Following
+            <span className="font-semibold text-gray-900">{stats.following.toLocaleString()}</span> Followers
           </span>
         </div>
       </div>

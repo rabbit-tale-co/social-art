@@ -24,23 +24,7 @@ export function BentoGallery({ images, showDebugInfo = false }: BentoGalleryProp
 
   return (
     <div className="mt-10 pb-10">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Debug info */}
-        {showDebugInfo && (
-          <div className="mb-4 p-4 bg-gray-100 rounded-lg text-sm">
-            <div className="font-semibold mb-2">Debug Info:</div>
-            <div>Total items: {items.length}</div>
-            <div>Total cells: {items.reduce((sum, item) => sum + item.colSpan * item.rowSpan, 0)}</div>
-            <div>Cells % 3: {items.reduce((sum, item) => sum + item.colSpan * item.rowSpan, 0) % 3}</div>
-            <div>Gap-free: {items.reduce((sum, item) => sum + item.colSpan * item.rowSpan, 0) % 3 === 0 ? '✅' : '❌'}</div>
-            <div className="mt-2 text-xs">
-              Layout: {items.slice(0, 6).map((item, i) =>
-                `${i}: ${item.colSpan}×${item.rowSpan}@(${item.gridRow || '?'},${item.gridCol || '?'})`
-              ).join(', ')}
-            </div>
-          </div>
-        )}
-
+      <div className="max-w-4xl mx-auto">
         {/* Main Bento Grid */}
         <div className="grid-container">
           {items.map((item, index) => (
@@ -50,11 +34,14 @@ export function BentoGallery({ images, showDebugInfo = false }: BentoGalleryProp
                 gridColumn: item.gridCol ? `${item.gridCol} / span ${item.colSpan}` : `span ${item.colSpan}`,
                 gridRow: item.gridRow ? `${item.gridRow} / span ${item.rowSpan}` : `span ${item.rowSpan}`
               }}
-              className={`relative overflow-hidden rounded-lg group hover:scale-[1.02] transition-transform duration-300 ${item.colSpan === 2 && item.rowSpan === 1 ? 'aspect-[2/1]' :
-                  item.colSpan === 1 && item.rowSpan === 2 ? 'aspect-[1/2]' :
+              className={`cursor-pointer relative overflow-hidden rounded-3xl group/image ${
+                // Dla elementów które rozciągają się w dół (1×2, 1×3) - pozwól CSS Grid kontrolować wysokość
+                item.rowSpan > 1 ? 'h-full' :
+                  // Dla elementów które rozciągają się w poziomie - ustaw odpowiednie aspect ratio
+                  item.colSpan === 2 && item.rowSpan === 1 ? 'aspect-[2/1]' :
                     item.colSpan === 3 && item.rowSpan === 1 ? 'aspect-[3/1]' :
-                      item.colSpan === 2 && item.rowSpan === 2 ? 'aspect-[1/1]' :
-                        'aspect-[1/1]'
+                      // Dla normalnych elementów 1×1 lub 2×2
+                      'aspect-[1/1]'
                 }`}
             >
               <Image
@@ -62,15 +49,15 @@ export function BentoGallery({ images, showDebugInfo = false }: BentoGalleryProp
                 alt={item.title}
                 fill
                 sizes="(max-width: 640px) 100vw, 33vw"
-                className="object-cover"
+                className="object-cover group-hover/image:scale-105 transition-transform duration-300"
                 priority={index < 6}
                 placeholder="blur"
                 blurDataURL={item.blur}
               />
 
               {/* Overlay with title on hover */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-end">
-                <div className="p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/30 transition-all duration-300 flex items-end">
+                <div className="p-4 text-white transform translate-y-full group-hover/image:translate-y-0 transition-transform duration-300">
                   <h3 className="font-semibold text-lg">{item.title}</h3>
                   {item.description && (
                     <p className="text-sm text-white/80 mt-1">{item.description}</p>

@@ -34,13 +34,8 @@ export default function Footer() {
       href={href}
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
-      className="flex items-center gap-3 text-xs font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors uppercase tracking-wider group focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-ring"
+      className="flex items-center gap-3 text-xs text-background hover:text-background transition-colors tracking-wider group focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-ring"
     >
-      {icon && (
-        <div className="size-6 bg-foreground/[0.02] flex items-center justify-center text-xs font-bold">
-          {icon}
-        </div>
-      )}
       {label}
       <OutlineArrowRight
         size={12}
@@ -52,28 +47,25 @@ export default function Footer() {
   );
 
   return (
-    <footer className="border-t border-border">
-      <div className="max-w-screen-md mx-auto sm:border-l sm:border-r border-border">
-        <div className="bg-foreground/[0.02]">
+    <footer className="">
+      <div className="max-w-4xl mx-auto">
+        <div className="">
           {/* Main Footer Content */}
-          <div className="bg-background p-6">
+          <div className="p-6 bg-foreground rounded-3xl">
             <div className="flex flex-col md:flex-row justify-between items-start gap-8">
               {/* Logo and info */}
               <div className="w-full md:w-auto space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="size-8 bg-foreground text-background flex items-center justify-center">
+                  <div className="size-8 text-background flex items-center justify-center">
                     <SolidLogo size={20} />
                   </div>
-                  <span className="font-mono font-bold text-gray-900 dark:text-gray-100 text-sm uppercase tracking-wider">
-                    Kris German
+                  <span className="font-bold text-background text-sm uppercase tracking-wider">
+                    Social Art
                   </span>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-xs font-mono text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                    Designer & Developer
-                  </p>
-                  <p className="text-xs font-mono text-gray-500 dark:text-gray-500">
-                    Since 2016
+                  <p className="text-xs text-background tracking-wider">
+                    Social for artists
                   </p>
                 </div>
               </div>
@@ -82,11 +74,11 @@ export default function Footer() {
               <div className="w-full md:w-auto grid grid-cols-1 md:flex md:gap-8 gap-8">
                 {/* Social Links */}
                 <div className="space-y-4">
-                  <div className="border-l-4 border-black dark:border-white pl-4">
-                    <h4 className="text-xs font-mono font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                      Socials
-                    </h4>
-                  </div>
+
+                  <h4 className="text-xs font-bold text-background tracking-wider">
+                    Socials
+                  </h4>
+
                   <div className="space-y-2">
                     {socialLinks.map((link) => (
                       <LinkWithArrow
@@ -102,11 +94,11 @@ export default function Footer() {
 
                 {/* Navigation Links */}
                 <div className="space-y-4">
-                  <div className="border-l-4 border-black dark:border-white pl-4">
-                    <h4 className="text-xs font-mono font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                      Navigation
-                    </h4>
-                  </div>
+
+                  <h4 className="text-xs font-bold text-background tracking-wider">
+                    Navigation
+                  </h4>
+
                   <div className="space-y-2">
                     {navigationLinks.map((link) => (
                       <LinkWithArrow
@@ -120,11 +112,11 @@ export default function Footer() {
 
                 {/* Resources */}
                 <div className="space-y-4">
-                  <div className="border-l-4 border-black dark:border-white pl-4">
-                    <h4 className="text-xs font-mono font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                      Resources
-                    </h4>
-                  </div>
+
+                  <h4 className="text-xs font-bold text-background tracking-wider">
+                    Resources
+                  </h4>
+
                   <div className="space-y-2">
                     {resourceLinks.map((link) => (
                       <LinkWithArrow
@@ -142,12 +134,12 @@ export default function Footer() {
 
           {/* <SectionSeparator /> */}
 
-          <div className="bg-background p-6">
+          <div className="p-6">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <p className="text-xs font-mono text-gray-500 dark:text-gray-500 uppercase tracking-wider">
+              <p className="text-xs text-gray-500 dark:text-gray-500 uppercase tracking-wider">
                 &copy; {currentYear} All rights reserved
               </p>
-              <p className="text-xs font-mono text-gray-500 dark:text-gray-500 uppercase tracking-wider">
+              <p className="text-xs text-gray-500 dark:text-gray-500 uppercase tracking-wider">
                 Made by RabbitTale Studio
               </p>
             </div>

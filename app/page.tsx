@@ -19,7 +19,6 @@ export default function Home() {
       <UserProfile {...userProfile} />
       <BentoGallery
         images={bentoImages}
-        showDebugInfo={true} // Wlaczam debug zeby zobaczyc nowy deterministyczny system
       />
     </div>
   );
